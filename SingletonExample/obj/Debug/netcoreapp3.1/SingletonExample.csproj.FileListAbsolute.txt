@@ -1,0 +1,11 @@
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\bin\Debug\netcoreapp3.1\SingletonExample.exe
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\bin\Debug\netcoreapp3.1\SingletonExample.deps.json
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\bin\Debug\netcoreapp3.1\SingletonExample.runtimeconfig.json
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\bin\Debug\netcoreapp3.1\SingletonExample.runtimeconfig.dev.json
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\bin\Debug\netcoreapp3.1\SingletonExample.dll
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\bin\Debug\netcoreapp3.1\SingletonExample.pdb
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\obj\Debug\netcoreapp3.1\SingletonExample.csprojAssemblyReference.cache
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\obj\Debug\netcoreapp3.1\SingletonExample.AssemblyInfoInputs.cache
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\obj\Debug\netcoreapp3.1\SingletonExample.AssemblyInfo.cs
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\obj\Debug\netcoreapp3.1\SingletonExample.dll
+C:\Users\erikv\source\repos\SingletonExample\SingletonExample\obj\Debug\netcoreapp3.1\SingletonExample.pdb
