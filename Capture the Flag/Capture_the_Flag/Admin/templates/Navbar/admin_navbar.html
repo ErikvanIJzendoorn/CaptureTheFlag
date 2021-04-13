@@ -1,0 +1,23 @@
+{% block content %}
+{% load static %}
+
+<head>
+    <link href="{% static 'css/admin_navbar_style.css' %}" rel="stylesheet" />
+</head>
+
+<div class="topnav">
+    <div class="space-evenly">
+        <a href="{% url 'tournaments' %}" class="topnav-a-left ">Toernooien</a>
+    </div>
+
+    <div>
+        <img src="{%static 'img/CTFgreen.png' %}" alt="CTF" class="logo-img center"/>
+    </div>
+    <div class="topnav-right space-evenly">
+        
+        <a href="{% url 'logout' %}" class="topnav-a-right ">Log Uit</a>
+        <a href="" class="topnav-a-right">{{ request.user.username }}</a>
+    </div>
+</div>
+
+{% endblock %}

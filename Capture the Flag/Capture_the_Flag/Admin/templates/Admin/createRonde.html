@@ -1,0 +1,47 @@
+﻿{% load static %}
+{% include 'base.html' %}
+{% include 'Navbar/admin_navbar.html' %}
+<head>
+    <title>Ronde aanmaken</title>
+    <link href="{% static 'css/CreateRonde_style.css' %}" rel="stylesheet" />
+</head>
+
+
+<body>
+<h1>Nieuwe ronde aanmaken</h1>
+    {% if not message %}
+        <!--<span>Toernooicode: {{ tournament }} </span> -->
+        <h5>Rondenummer: {{ RoundCount }} </h5>
+    {% else %}
+        <p id="message">{{ message }}</p>
+    {% endif %}
+    
+    <form method="post" class="duration-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="container-main">
+            <div class="container-table">
+                <table id="vragen">
+                    <tr>
+                        <th> Titel </th>
+                        <th> Vraag </th>
+                        <th> Punten </th>
+                        <th> Voeg toe </th>
+                    </tr>
+                    {% for vraag in vragenlijst %}
+                    <tr>
+                        <td> {{ vraag.title }} </td>
+                        <td>{{vraag.omschrijving}}</td>
+                        <td> {{ vraag.punten }} </td>
+                        <td> <input type="checkbox" name="vragen[]" value="{{ vraag.vraagID }}" /> </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        <div class="btn-container">
+            <input type="submit" value="Opslaan" class="btn btn-green btn-save-round">
+            <a class="btn btn-warning btn-annuleer-round" href="{{ request.META.HTTP_REFERER }}">Annuleer</a>
+        </div>
+        </div>
+    </form>
+</body>

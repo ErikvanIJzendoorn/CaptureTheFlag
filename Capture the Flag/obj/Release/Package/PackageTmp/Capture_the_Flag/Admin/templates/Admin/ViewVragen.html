@@ -1,0 +1,32 @@
+﻿{% load static %}
+{% include 'base.html' %}
+
+{% include 'Navbar/admin_navbar.html' %}
+
+    <link href="{% static 'css/viewVragen_style.css' %}" rel="stylesheet" />
+
+<body>
+<h2>Vragenlijst</h2>
+    <div class="main-container">
+        <div class="table-container">
+            <div class="inner-container">
+                <table id="vragen">
+                    <tr>
+                        <th>#</th>
+                        <th> Vraag </th>
+                        <th> Punten </th>
+                        <th> Wijzigen </th>
+                    </tr>
+                    {% for vraag in vragenlijst %}
+                    <tr>
+                        <td>{{vraag.vraagID}}</td>
+                        <td> {{ vraag.title }} </td>
+                        <td> {{ vraag.punten }} </td>
+                        <td><a href="{% url 'editVraag' vraag.vraagID %}"> Wijzigen</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>

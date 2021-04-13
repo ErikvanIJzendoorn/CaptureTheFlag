@@ -1,0 +1,67 @@
+﻿{% load static %}
+{% include 'base.html' %}
+{% include 'Navbar/admin_navbar.html' %}
+
+<head>
+    <title>Ronde wijzigen</title>
+    <link href="{% static 'css/ModifyRonde_style.css' %}" rel="stylesheet" />
+</head>
+
+
+<head>
+    <title>Ronde aanpassen</title>
+</head>
+<body>
+    <h1>Ronde aanpassen</h1>
+    <form id="roundForm" method="post">
+        <div class="container-main">
+            <div class="container-items">
+                <div class="duration-form">
+                <a class="btn btn-primary btn-back" href="{% url 'ViewTournament' tournament %}">Terug</a>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                 </div>
+                <captation>Huidige vragen</captation>
+                <div class="container-table">
+                    <table id="vragen">
+                    <tr>
+                        <th> Titel </th>
+                        <th> Vraag </th>
+                        <th> Punten </th>
+                        <th> Verwijderen </th>
+                    </tr>
+                    {% for vraag in huidige_vragen %}
+                        <tr>
+                            <td> {{ vraag.title }} </td>
+                            <td> {{ vraag.omschrijving }} </td>
+                            <td> {{ vraag.punten }} </td>
+                            <td class="voegToe"> <input type="checkbox" name="verwijderen[]" value="{{ vraag.vraagID }}"/> </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+
+                <Captation>Toe te voegen vragen</Captation>
+                <div class="container-table">
+                    <table id="vragen">
+                    <tr>
+                        <th> Titel </th>
+                        <th> Vraag </th>
+                        <th> Punten </th>
+                        <th> Toevoegen </th>
+                    </tr>
+                    {% for vraag in vragenlijst %}
+                        <tr>
+                            <td> {{ vraag.title }} </td>
+                            <td> {{ vraag.omschrijving }} </td>
+                            <td> {{ vraag.punten }} </td>
+                            <td> <input type="checkbox" name="toevoegen[]" value="{{ vraag.vraagID }}"/> </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+                <input type="submit" value="Opslaan" class="btn btn-green btn-save-round">
+            </div>
+        </div>
+    </form>
+</body>

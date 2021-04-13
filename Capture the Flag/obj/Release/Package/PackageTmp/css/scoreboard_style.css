@@ -1,0 +1,40 @@
+h3 {
+    font-weight: 400;
+    margin-left: 25px;
+}
+
+.score_container {
+    width: 100%;
+    float: right;
+    border: 2px solid #9E9E9E;
+    height: 100%;
+    border-radius: 2px;
+    background: #f7f7d2;
+}
+
+#table-scoreboard {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 85%;
+}
+
+    #table-scoreboard td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #table-scoreboard tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #table-scoreboard tr:nth-child(odd) {
+        background-color: white;
+    }
+
+    #table-scoreboard th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }

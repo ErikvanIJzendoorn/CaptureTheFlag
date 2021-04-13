@@ -1,0 +1,99 @@
+﻿{% load static %}
+{% include 'base.html' %}
+<head>
+    <title>Profiel wijzigen</title>
+    <link href="{% static 'css/vraag_style.css' %}" rel="stylesheet" />
+</head>
+
+{% block teamProfileEdit %}
+{% include "Navbar/team_navbar.html" %}
+<div class="container col-sm-offset-2 col-sm-10 p-3 my-3 border bg-white">
+    <div class="col-sm-offset-2 justify-content-sm-center">
+        <h3>Profiel bewerken</h3>
+        <form id="questionForm" class="form-horizontal" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <div class="col-sm-4">
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input class="btn btn-primary" type="submit" value="Opslaan">
+                    <a href="/team/teamprofile/{{ current_team.teamcode }}" class="btn btn-secondary">Terug</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    const timer = (function ($) {
+        let round = 0;
+
+        const init = function () {
+            update();
+            setInterval(update, 1000);
+        }
+
+        const update = function () {
+            $.ajax({
+                'url': '/dashboard/timer/{{ team_toernooi.toernooicode.toernooicode }}',
+                'dataType': 'json',
+                'async': true,
+                'success': function (data) {
+                    calculateTime(data);
+                    if (round != 0) {
+                        if (data.round > round) {
+                            location.reload();
+                        }
+                    }
+
+                    if (data.active == 0) {
+                        location.reload();
+                    }
+                    round = data.round
+                }
+            });
+        }
+
+        return {
+            init: init
+        }
+
+        const calculateTime = function (clock) {
+            if (clock.active == 1) {
+                enableQuestions();
+                endtime = new Date(Date.parse(clock.endtime));
+                now = Date.now();
+
+                diffInSec = Math.round((endtime - now) / 1000);
+
+                timeLeft = new Date(diffInSec * 1000).toISOString().substr(11, 8);
+            }
+            else {
+                disableQuestions();
+                if (clock.set == 1) {
+                    const current_timer_time = clock.current_timer_time;
+                    timeLeft = current_timer_time.substr(0, 8) + "<i> - Pauze</i>";
+                }
+                else {
+                    timeLeft = "00:00:00";
+                }
+            }
+
+            timer.html(timeLeft);
+        }
+    })(jQuery);
+
+    $(function () {
+        timer.init();
+    });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% block scoreboard %}
+    <div class="score_container">
+        <h3>
+            Score: 99
+        </h3>
+        <h3>
+            Vragen beantwoord: 4
+        </h3>
+
+        <table id="table-scoreboard">
+          <tr>
+            <th>#</th>
+            <th>Team</th>
+            <th>Score</th>
+          </tr>
+            {% for team in teams %}
+             <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ team.naam }}</td>
+                <td>{{ team.score }}</td>
+              </tr>
+            {% endfor %}
+         
+         
+        </table>
+    </div>
+
+{% endblock %}
+
+
+

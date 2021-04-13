@@ -1,0 +1,26 @@
+{% block content %}
+{% load static %}
+{% load custom_tags %}
+
+<head>
+    <link href="{% static 'css/team_navbar_style.css' %}" rel="stylesheet" />
+</head>
+
+<div class="topnav">
+    <div>
+        <a href="/dashboard/{{ request.COOKIES.team_tournamentCode }}">Dashboard</a>
+    </div>
+    <div>
+        <img src="{%static 'img/CTFgreen.png' %}" alt="CTF" class="logo-img"/>
+    </div>
+    <div class="topnav-right">
+        <p id="timer" class="timer">15:43</p>
+        <a href="/../team/teamprofile/{{request.COOKIES.team_teamcode}}" class="d-flex align-items-center justify-content-center">
+            <h5 class="">
+                <span class="badge" style="background-color: {{ current_team.kleur }}; color: {% get_complementary current_team.kleur %}">{{ current_team.naam }}</span>
+            </h5>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

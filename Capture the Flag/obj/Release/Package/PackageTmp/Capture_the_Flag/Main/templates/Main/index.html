@@ -1,0 +1,79 @@
+{% load static %}
+{% include 'base.html' %}
+<html>
+<head>
+    <link href="{% static 'css/landing_style.css' %}" rel="stylesheet" />
+    <script type="text/javascript" src="{% static "js/landing_script.js" %}"></script>
+</head>
+
+<body>
+<div class="main_container">
+    <div>
+        <img src="{%static 'img/CTFgreen.png' %}" alt="Alternate Text" class="logo"/>
+    </div>
+
+    {{ message }}
+
+
+
+
+    <div class="container card">
+      <ul class="nav nav-tabs" id="myTab">
+        <li ><a data-toggle="tab" href="#teamsLoginTab" class="nav-link"id="teamTab">Teams</a></li>
+        <li><a data-toggle="tab" href="#beheerLoginTab" class="nav-link">Beheer</a></li>
+      </ul>
+
+      <div class="tab-content">
+       <!-- Team login tab -->
+          <div id="teamsLoginTab" class="tab-pane fade">
+                <form action="" method="post" name="teamlogin" class="login-form">
+                    {% csrf_token %}
+                    <h3>Inloggen voor teams</h3>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="teamUsersIcon"><i class="fa fa-users"></i></span>
+                            </div>
+                            {{form.teamCode}}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="teamTournamentIcon"><i class="fa fa-puzzle-piece"></i></span>
+                            </div>
+                            {{form.tournamentCode}}
+                        </div>
+                        <div class="button-container">
+                            <input type="submit" value="Log in" name="submitteam" class="btn btn-primary btn-primary-wider">
+                        </div>
+                </form>
+          </div>
+       <!-- Beheer login tab -->
+          <div id="beheerLoginTab" class="tab-pane fade">
+                <form action="" method="post" class="login-form">
+                    {% csrf_token %}
+                    <h3>Inloggen voor beheer</h3>           
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="teamUsersIcon"><i class="fa fa-user"></i></span>
+                            </div>
+                             {{user_form.username}}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="teamTournamentIcon"><i class="fa fa-unlock-alt"></i></span>
+                            </div>
+                               {{user_form.password}}
+                        </div>
+                    <div class="button-container">
+                        <input type="submit" value="Log in" name="submituser" class="btn btn-primary btn-primary-wider">
+                    </div>
+                </form>
+          </div>
+
+          <div class="card-footer">
+              <p class="footer-text"><i>Heb je geen gegevens ontvangen of ben je deze kwijt?<br />Neem dan contact op met je docent om deze gegevens op te vragen.</i></p>
+          </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

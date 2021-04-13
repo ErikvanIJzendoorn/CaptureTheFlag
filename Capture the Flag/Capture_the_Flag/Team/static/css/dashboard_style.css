@@ -1,0 +1,21 @@
+#content_container {
+    width: 100%;
+    display: flex;
+}
+
+#toernooi_info {
+    height: auto;
+    width: 80%;
+    float: left;
+    margin-left: 8%;
+}
+
+#vragenlijst {
+    width: 80%;
+    margin-left: 8%;
+    float: left;
+}
+
+#scoreboard {
+    padding: 0;
+}

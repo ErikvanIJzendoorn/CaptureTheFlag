@@ -1,0 +1,36 @@
+{%block vragenlijst%}
+
+<div class="container-questions">
+    {% for v in vragen %}
+            <div class="question
+            {% for a in antwoorden %}
+            {% if v.vraagID == a.vraagID.vraagID %}
+                {% if a.correct == 1 %}
+                correct
+                {% elif a.correct == 2 %}
+                incorrect
+                {% elif a.correct == 0 %}
+                review
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+            ">
+            <a href="{% url 'dashboard:vraag' v.vraagID %}" class="question-btn"> {# url vraag = namespace defined in urls.py #}
+                <div class="question-top">
+                    <div class="number">{{v.vraagID}}</div>
+                    {%if v.nakijken != 0 %}
+                        <div class="referee">:O</div>
+                    {% endif %}
+                </div>
+                <div class="score">{{v.punten}}</div>
+                {% if v.type == 'T' %}
+                    <div class="type">Input string</div>
+                {% elif v.type == 'M' %}
+                    <div class="type">Multiple Choice</div>
+                {% endif %}
+                </a>
+            </div>
+        
+    {% endfor %}
+</div>
+{%endblock%}

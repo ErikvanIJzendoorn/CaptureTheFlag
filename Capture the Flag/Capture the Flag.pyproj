@@ -1,0 +1,237 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>Capture the Flag</Name>
+    <RootNamespace>Capture the Flag</RootNamespace>
+    <InterpreterId>Global|VisualStudio|This is our global env</InterpreterId>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+    <TestFramework>Pytest</TestFramework>
+    <WebBrowserPort>64709</WebBrowserPort>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>e88d5afe-0a77-4868-9e0c-41ad68fc2a8f</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>Capture_the_Flag.settings</DjangoSettingsModule>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Capture_the_Flag\Admin\admin.py" />
+    <Compile Include="Capture_the_Flag\Admin\apps.py" />
+    <Compile Include="Capture_the_Flag\Admin\clock.py" />
+    <Compile Include="Capture_the_Flag\Admin\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Admin\migrations\__init__.py" />
+    <Compile Include="Capture_the_Flag\Admin\models.py" />
+    <Compile Include="Capture_the_Flag\Admin\tests.py" />
+    <Compile Include="Capture_the_Flag\Admin\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Admin\views.py" />
+    <Compile Include="Capture_the_Flag\Admin\__init__.py" />
+    <Compile Include="Capture_the_Flag\Main\admin.py" />
+    <Compile Include="Capture_the_Flag\Main\apps.py" />
+    <Compile Include="Capture_the_Flag\Main\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Main\migrations\__init__.py" />
+    <Compile Include="Capture_the_Flag\Main\models.py" />
+    <Compile Include="Capture_the_Flag\Main\tests.py" />
+    <Compile Include="Capture_the_Flag\Main\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Main\views.py" />
+    <Compile Include="Capture_the_Flag\Main\__init__.py" />
+    <Compile Include="Capture_the_Flag\Team\admin.py" />
+    <Compile Include="Capture_the_Flag\Team\apps.py" />
+    <Compile Include="Capture_the_Flag\Team\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Team\migrations\__init__.py" />
+    <Compile Include="Capture_the_Flag\Team\models.py" />
+    <Compile Include="Capture_the_Flag\Team\templatetags\custom_tags.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Team\templatetags\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Team\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Capture_the_Flag\Team\tests.py" />
+    <Compile Include="Capture_the_Flag\Team\views.py" />
+    <Compile Include="Capture_the_Flag\Team\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="Capture_the_Flag\__init__.py" />
+    <Compile Include="Capture_the_Flag\settings.py" />
+    <Compile Include="Capture_the_Flag\urls.py" />
+    <Compile Include="Capture_the_Flag\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CapturetheFlag20200601120731 - Web Deploy.pubxml" />
+    <Content Include="Capture_the_Flag\Admin\static\css\AssignScheids_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\ChangeBeheer_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\ControlPanel_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\CreateRonde_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\createToernooi.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\createVraag_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\admin_navbar_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\AdminDashboard_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\ManageQuestion_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\modifyQuestion_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\ModifyRonde_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\TournamentList_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\InzienToernooi.css" />
+    <Content Include="Capture_the_Flag\Admin\static\css\viewVragen_style.css" />
+    <Content Include="Capture_the_Flag\Admin\static\js\controlPanel.js" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\assignScheidsrechter.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\controlPanel.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\createVraag.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\createRonde.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\dashboard.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\index.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\createTournament.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\login.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\manageQuestion.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\modifyRound.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\modifyQuestion.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\toernooiBeheerderWijzigen.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\tournamentList.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\viewTournament.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\assessableAnswers.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\assessAnswer.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Admin\ViewVragen.html" />
+    <Content Include="Capture_the_Flag\Admin\templates\Navbar\admin_navbar.html" />
+    <Content Include="Capture_the_Flag\Team\static\css\team_navbar_style.css" />
+    <Content Include="Capture_the_Flag\Main\static\css\landing_style.css" />
+    <Content Include="Capture_the_Flag\Main\static\js\landing_script.js" />
+    <Content Include="Capture_the_Flag\Main\templates\Main\index.html" />
+    <Content Include="Capture_the_Flag\Team\static\css\scoreboard_style.css" />
+    <Content Include="Capture_the_Flag\Team\static\css\toernooi_info_style.css" />
+    <Content Include="Capture_the_Flag\Team\static\css\vraag_style.css" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\teamPopup.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\notificationPopup.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Team\TeamProfile.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Team\teamProfileEdit.html" />
+    <Content Include="Capture_the_Flag\templates\base.html" />
+    <Content Include="Capture_the_Flag\Team\static\css\dashboard_style.css" />
+    <Content Include="Capture_the_Flag\Team\static\css\vragenlijst_style.css" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\dashboard.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\scoreboard.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\toernooi_info.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Navbar\team_navbar.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Team\index.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\vraag.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Dashboard\vragenlijst.html" />
+    <Content Include="Capture_the_Flag\Team\templates\Team\login.html" />
+    <Content Include="Capture_the_Flag\templates\base_no_bootstrap.html" />
+    <Content Include="Capture_the_Flag\static\img\CTFgreen.png" />
+    <Content Include="Capture_the_Flag\static\img\CTFGreenNB.png" />
+    <Content Include="Capture_the_Flag\static\base_style.css" />
+    <Content Include="requirements.txt" />
+    <None Include="windesheimctf - Web Deploy.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Capture_the_Flag\" />
+    <Folder Include="Capture_the_Flag\Admin\" />
+    <Folder Include="Capture_the_Flag\Admin\migrations\" />
+    <Folder Include="Capture_the_Flag\Admin\static\" />
+    <Folder Include="Capture_the_Flag\Admin\static\css\" />
+    <Folder Include="Capture_the_Flag\Admin\static\js\" />
+    <Folder Include="Capture_the_Flag\Admin\templates\" />
+    <Folder Include="Capture_the_Flag\Admin\templates\Admin\" />
+    <Folder Include="Capture_the_Flag\Admin\templates\Navbar\" />
+    <Folder Include="Capture_the_Flag\Main\" />
+    <Folder Include="Capture_the_Flag\Main\migrations\" />
+    <Folder Include="Capture_the_Flag\Main\static\" />
+    <Folder Include="Capture_the_Flag\Main\static\css\" />
+    <Folder Include="Capture_the_Flag\Main\static\js\" />
+    <Folder Include="Capture_the_Flag\Main\templates\" />
+    <Folder Include="Capture_the_Flag\Main\templates\Main\" />
+    <Folder Include="Capture_the_Flag\Team\templatetags\" />
+    <Folder Include="Capture_the_Flag\templates\" />
+    <Folder Include="Capture_the_Flag\Team\static\" />
+    <Folder Include="Capture_the_Flag\Team\" />
+    <Folder Include="Capture_the_Flag\Team\migrations\" />
+    <Folder Include="Capture_the_Flag\Team\static\css\" />
+    <Folder Include="Capture_the_Flag\Team\static\js\" />
+    <Folder Include="Capture_the_Flag\Team\templates\" />
+    <Folder Include="Capture_the_Flag\Team\templates\Navbar\" />
+    <Folder Include="Capture_the_Flag\Team\templates\Dashboard\" />
+    <Folder Include="Capture_the_Flag\Team\templates\Team\" />
+    <Folder Include="Capture_the_Flag\static\img\" />
+    <Folder Include="Capture_the_Flag\static\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.8</Version>
+      <Description>env (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

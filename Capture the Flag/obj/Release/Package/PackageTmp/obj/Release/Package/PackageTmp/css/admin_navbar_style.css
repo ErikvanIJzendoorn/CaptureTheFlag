@@ -1,0 +1,81 @@
+html {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0 !important;
+}
+
+    /* Style the links inside the navigation bar */
+    .topnav-a-left {
+        width: 150px;
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        background-color: #545454;
+    }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            color: white;
+            text-decoration: none;
+            background-color: #777575;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+.topnav-right {
+    align-items: center;
+}
+
+.topnav-a-right {
+    width: 150px;
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #545454;
+}
+
+.timer {
+    background-color: red;
+    border-radius: 25px;
+    float: left;
+    padding: 6px 30px;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    margin: 0;
+    position: relative;
+    right: 100px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+}
+
+.space-evenly {
+    width: 40%;
+}

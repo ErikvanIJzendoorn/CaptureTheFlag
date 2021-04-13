@@ -1,0 +1,19 @@
+Performing system checks...
+
+System check identified some issues:
+
+WARNINGS:
+Admin.Gebruiker.userID: (fields.W122) 'max_length' is ignored when used with IntegerField.
+	HINT: Remove 'max_length' from field
+
+System check identified 1 issue (0 silenced).
+May 20, 2020 - 14:11:05
+Django version 2.2.12, using settings 'Capture_the_Flag.settings'
+Starting development server at http://127.0.0.1:64709/
+Quit the server with CTRL-BREAK.
+[20/May/2020 14:11:05] "GET / HTTP/1.1" 200 5165
+[20/May/2020 14:11:07] "POST / HTTP/1.1" 302 0
+<QuerySet [<Antwoord: Antwoord object (1)>, <Antwoord: Antwoord object (2)>, <Antwoord: Antwoord object (3)>, <Antwoord: Antwoord object (4)>, <Antwoord: Antwoord object (5)>]>
+[20/May/2020 14:11:08] "GET /dashboard/0hNo3jVe4Kr5 HTTP/1.1" 200 19339
+[20/May/2020 14:11:08] "GET /static/css/team_navbar_style.css HTTP/1.1" 304 0
+The program 'python.exe' has exited with code -1 (0xffffffff).

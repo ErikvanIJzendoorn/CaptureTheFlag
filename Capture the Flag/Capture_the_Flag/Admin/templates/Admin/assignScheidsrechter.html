@@ -1,0 +1,23 @@
+﻿{% load static %}
+{% include 'base.html' %}
+{% include "Navbar/admin_navbar.html" %}
+<head>
+    <title>Scheidsrechters</title>
+    <link href="{% static 'css/AssignScheids_style.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+<h2>Scheidrechters beheren</h2>
+    <div class="main-container">    
+        <div class="form-container card-addition">
+            <form id="assignScheidsrechterForm" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input class="btn btn-green" type="submit" value="Scheidsrechter toevoegen">
+            <a class="btn btn-warning" href="{{ request.META.HTTP_REFERER }}">Annuleren</a>
+            </form>
+        </div>
+    </div>
+
+    
+</body>

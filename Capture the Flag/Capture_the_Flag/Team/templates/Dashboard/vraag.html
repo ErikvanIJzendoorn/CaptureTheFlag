@@ -1,0 +1,183 @@
+{% load static %}
+{% include 'base.html' %}
+<head>
+    <title>Vraag {{counter}}</title>
+    <link href="{% static 'css/vraag_style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/scoreboard_style.css' %}" rel="stylesheet" />
+</head>
+
+
+{% block vraag %}
+{% include "Navbar/team_navbar.html" %}
+ {# Full body #}
+<div class="container-fluid">   
+    {# block with question, buttons #}
+    <div class="row">
+        <section class="container-questions col-md-9"> 
+            <br />
+            {# buttons/ top area #}
+            <section class="container-question-top">
+                <div>
+                    {% if request.GET.first == false and counter > 1 %}
+                        <a class="btn btn-outline-secondary" href="{{ backbutton_href }}">< Terug</a>
+                    {% endif %}
+                </div>
+                <h3>Vraag {{ counter }}</h3>
+                <div>
+                    {% if request.GET.last == false and counter < counter_max %}
+                        <a class="btn btn-outline-primary" href="{{ nextbutton_href }}">Volgende ></a>
+                    {% endif %}
+                 </div>
+            </section>
+            <br />
+            {# Text area. Questionnumber - question - input field - #}
+            <section class="container-question-mid"> 
+                <div>
+                    {% if timer.active == 0 %}
+                        <h4>Vragen kunnen alleen geopend worden als de tijd loopt.</h4>
+                    {% else %}
+                    {% if request.GET.err %}
+                        <p style="color:maroon">Vul een geldig antwoord in</p>
+                    {% endif %}
+                        <h4>{{vraag.title}}</h4>
+                        {% if answer %}
+                            <p>{{vraag.omschrijving}}</p>
+                            {% if vraag.nakijken == 1 %}
+                                {% if answer.correct == 1 %}
+                                    <h5 style="color:lawngreen">Goedgekeurd!</h5>
+                                    <p>Antwoord: {{answer.antwoord}}</p>
+                                {% elif answer.correct == 0 %}
+                                    <h5>De vraag wordt momenteel nagekeken door een scheidsrechter!</h5>
+                                {% else %}
+                                    <h5 style="color:red">Fout!</h5>
+                                    <p>Antwoord: {{answer.antwoord}}</p>
+                                {% endif %}
+                            {% else %}
+                                {% if answer.correct == 1 %}
+                                    <h5 style="color:lawngreen">Goedgekeurd!</h5>
+                                    <p>Antwoord: {{answer.antwoord}}</p>
+                                {% else %}
+                                    <h5 style="color:red">Fout!</h5>
+                                    <p>Antwoord: {{answer.antwoord}}</p>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if vraag.type == 'T' %}
+                                <form method="post" id="antwoordform">
+                                    <p>{{vraag.omschrijving}}</p>
+                                    <br />
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <section class="container-question-bottom">
+                                        <input form="antwoordform" type="submit" class="submit-btn" value="Insturen">
+                                    </section>
+                                </form>
+                            {% elif vraag.type == 'M'%}
+                                <form method="post" id="meerkeuzeform">
+                                    <p>{{vraag.omschrijving}}</p>
+                                    <br />
+                                    {% csrf_token %}
+                            
+                                    <label>{{keuzes.keuzeEen}} <input type="radio" value="{{keuzes.keuzeEen}}" name="gekozen"/></label>
+                                    <label>{{keuzes.keuzeTwee}}<input type="radio" value="{{keuzes.keuzeTwee}}" name="gekozen"/></label>
+                                    <label>{{keuzes.keuzeDrie}} <input type="radio" value="{{keuzes.keuzeDrie}}" name="gekozen"/></label>
+                                    <label>{{keuzes.keuzeVier}} <input type="radio" value="{{keuzes.keuzeVier}}" name="gekozen"/></label>
+                                    <section class="container-question-bottom">
+                                        <input form="meerkeuzeform" type="submit" class="submit-btn" value="Insturen">
+                                    </section>
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+            </section>
+            {# submit button #}
+        </section>
+        <div id="scoreboard" class="content-right col-3">   
+            {% block scoreboard %}
+                {% include 'scoreboard.html' %}
+            {% endblock %}
+        </div>
+        {# block for minified dashboard #}
+    </div>
+</div>  
+
+<style>
+    label {
+        display: block;
+    }
+
+    textarea {
+        width: 100%;
+    }
+</style> 
+
+<script type="text/javascript">
+
+    const timer = (function ($) {
+        let round = 0;
+        let timer;
+
+        const init = function () {
+            timer = $('#timer')
+            update();
+            setInterval(update, 1000);
+        }
+
+        const update = function () {
+            $.ajax({
+                'url': '/dashboard/timer/{{tournamentCode}}',
+                'dataType': 'json',
+                'async': true,
+                'success': function (data) {
+                    calculateTime(data);
+
+                    if (round != 0) {
+                        if (data.round > round) {
+                            location.reload();
+                        }
+                    }
+
+                    if (data.active == 0) {
+                        location.reload();
+                    }
+                    round = data.round
+                }
+            });
+        }
+
+        const calculateTime = function (clock) {
+            if (clock.active == 1) {
+                endtime = new Date(Date.parse(clock.endtime));
+                now = Date.now();
+
+                diffInSec = Math.round((endtime - now) / 1000);
+
+                timeLeft = new Date(diffInSec * 1000).toISOString().substr(11, 8);
+            }
+            else {
+                if (clock.set == 1) {
+                    const current_timer_time = clock.current_timer_time;
+                    timeLeft = current_timer_time.substr(0, 8) + "<i> - Pauze</i>";
+                }
+                else {
+                    timeLeft = "00:00:00";
+                }
+            }
+                
+            timer.html(timeLeft);
+        }
+
+        return {
+            init: init
+        }
+    })(jQuery);
+
+    $(function () {
+        timer.init();
+    });
+
+</script>
+
+{% endblock %}

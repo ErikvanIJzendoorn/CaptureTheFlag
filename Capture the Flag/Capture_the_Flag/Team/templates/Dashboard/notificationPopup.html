@@ -1,0 +1,152 @@
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Let op!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalContent">
+                    Vraag # is door het beheer uitgeschakeld.<br />
+                    Deze vraag is nu niet meer te bekijken of te beantwoorden.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{# TODO: fix realtime question disabling with notification #}
+{# Display: none #}
+
+
+
+<script type="text/javascript">
+
+    const Notification = (function ($) {
+        let element = null;             // our modal element
+        let elementContent = null;      // the body of our modal
+        let visible = false;
+
+        const pastNotifs = [];          // notifications that were received
+        const queue = [];               // the nofitications wating to be shown
+
+        // runs on document.ready()
+        const init = function () {
+            element = $('#notificationModal');
+            elementContent = $('#modalContent');
+
+            // subscribe to modal's close event
+            element.on('hidden.bs.modal', function () {
+                close();
+            });
+
+            // set update loop
+            setInterval(update, 1000);
+        }
+
+        // retrieve and pass on notification data from database
+        const update = function () {
+            $.ajax({
+                'url': 'getNotifs',
+                'dataType': 'json',
+                'async': true,
+                'success': function (data) {
+                    handle(data);
+                }
+            });
+        }
+
+        const handle = function (list) {
+            // If there are more notifications in the database list than on the client
+            if (list.length !== pastNotifs.length) {
+                // loop through the database list
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].id === pastNotifs[i]) {
+                        // if a notification id is found in past notifications, go to next iteration
+                        continue;
+                    }
+
+                    // add the notification to past notifications list
+                    pastNotifs.push(list[i].id);
+
+                    // add or remove the question
+                    if (list[i].disabled == 1) {
+                        removeQuestion(list[i].vraagID);
+                    }
+                    else {
+                        resurrectQuestion(list[i].vraagID);
+                    }
+
+                    // convert notification timestamp to milliseconds since linux epoch
+                    let timestamp = new Date(list[i].timestamp).getTime();
+
+                    // create 1.5 second timeframe to avoid getting old notifications again, just enough time for the ajax call
+                    let timeframe = new Date().getTime() - 1500;       // subtract 1.5 seconds in milliseconds from now
+
+                    // if the timestamp is within the timeframe
+                    if (timestamp > timeframe) {
+                        // show the notification on the screen
+                        addNotification(list[i].content);
+
+                        // exit the loop to make sure all notifications come one by one
+                        break;
+                    }
+                }
+            }
+        }
+
+        const removeQuestion = function (vraagid) {
+            $('#q' + vraagid).css('display', 'none');
+        }
+
+        const resurrectQuestion = function (vraagid) {
+            $('#q' + vraagid).css('display', 'block');
+        }
+
+        const addNotification = function (content) {
+            // if there is no modal shown just show it
+            if (!visible) {
+                showNotification(content);
+            }
+            else {
+                // else put it in the queue
+                queue.push(content);
+            }
+        }
+
+        const showNotification = function (content) {
+            // set modal body to received notification content
+            elementContent.html(content);
+
+            // show modal
+            element.modal();
+            visible = true;
+        }
+
+        const close = function () {
+            visible = false;
+
+            // go to next notification
+            if (queue.length > 0) {
+                showNotification(queue.shift());
+            }
+        }
+
+        return {
+            init: init
+        }
+
+    })(jQuery);
+
+    $(function () {
+        Notification.init();
+    });
+
+</script>

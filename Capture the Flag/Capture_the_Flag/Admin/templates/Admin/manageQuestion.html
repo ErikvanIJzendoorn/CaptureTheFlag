@@ -1,0 +1,97 @@
+﻿{% load static %}
+{% include 'base.html' %}
+{% include 'Navbar/admin_navbar.html' %}
+
+<head>
+    <title>Vraag beheren</title>
+    <link href="{% static 'css/ManageQuestion_style.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+        <a href="{% url 'controlPanel' tournament.toernooicode %}" class="btn btn-primary btn-back">Terug</a>
+
+    <h2>Vraag {{question.vraagID}}</h2>
+    <div class="container-main">
+        <div class="container-left col-7">
+            <div class="container-question">
+                <div class="container-question-top">                
+                    <div class="container-info">
+                        <h5>{{question.title}}</h5>
+                    </div>
+                    <div class="container-info">
+                        <span>Vraag</span>
+                        <h5>{{question.omschrijving}}</h5>
+                    </div>
+                    <div class="container-info">
+                        <span>Antwoord</span>
+                        <h5> {{question.juist_antwoord}}</h5>
+                    </div>
+                </div>    
+                <div class="container-question-bot">
+                    <div class="container-info">
+                        <span>Type vraag</span>
+                        {% if question.type == "T" %}
+                        <h5> Tekst</h5>
+                        {%elif question.type == "I" %}
+                        <h5>Afbeelding</h5>
+                        {%elif question.type == "M" %} <!-- multiplechoice--> 
+                        <h5> Multiple choice</h5>
+                        {%endif%}
+                    </div>
+                    <div class="container-info">
+                        <span>Te behalen punten</span>
+                        <h5>{{question.punten}}</h5>
+                    </div>
+                    <div class="container-info">
+                        <span>Nakijken?</span>
+                        {%if question.nakijken == 0%}
+                        <h5>Nee</h5>
+                        {%elif question.nakijken == 1%}
+                        <h5> Ja</h5>
+                        {%endif%}
+                    </div>
+                </div>
+                <a href="{% url 'editVraag' question.vraagID round %}" class="btn btn-green btn-aanpassen">Vraag aanpassen</a>
+            </div>
+            <div class="container-schakel-btn">
+                {% if disabled == 1 %}
+                <a href="disable" class="btn btn-green btn-schakelen">Vraag Inschakelen</a>
+                {% else %}
+                    <a href="disable" class="btn btn-danger btn-schakelen">Vraag Uitschakelen</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="container-right">
+                <p>Overzicht van de gegeven antwoorden</p>
+                <div class="table-container" style="border: 1px solid black">
+                    <table class="table-question">
+                        <tr>
+                            <th>Team</th>
+                            <th>Antwoord</th>
+                            <th>Resultaat</th>
+                        </tr>
+                        {% for team in teams %}
+                        <tr>
+                            <td>{{ team.naam }}</td>
+                                {% for answ in answer %}
+                                    {% if answ.teamcode_id == team.teamcode and answ.vraagID_id == question.vraagID %}
+                                        <td>{{ answ.antwoord }}</td>
+                                        {% if answ.correct == 2 %}
+                                            <td id="resultaat-fout"><b>Fout &nbsp;</b><a href="{{answ.teamcode_id}}/changeresult"><i class="fa fa-pencil pencil" aria-hidden="true"></i></a></td>
+                                        {% elif answ.correct == 1 %}
+                                            <td id="resultaat-goed"><b>Goed &nbsp;</b><a href="{{answ.teamcode_id}}/changeresult"><i class="fa fa-pencil pencil" aria-hidden="true"></i></a></td>
+                                        {%else %}
+                                            <td id="resultaat-nakijken"><b>NAKIJKEN &nbsp;</b><a href="{{answ.teamcode_id}}/changeresult"><i class="fa fa-pencil pencil" aria-hidden="true"></i></a></td>
+                                        {% endif %}                            
+                                    {% endif %}
+                              {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

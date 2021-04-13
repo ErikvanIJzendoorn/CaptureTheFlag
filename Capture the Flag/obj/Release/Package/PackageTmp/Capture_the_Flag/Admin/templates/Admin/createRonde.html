@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    
+    
+    {% if not message %}
+            <span>Toernooicode: {{ tournament }} </span>
+        <span>Ronde: {{ RoundCount }} </span>
+    {% else %}
+        <p>{{ message }}</p>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    
+        <table id="vragen">
+            <tr>
+                <th> Vraag </th>
+                <th> Punten </th>
+                <th> Voeg toe </th>
+            </tr>
+            {% for vraag in vragenlijst %}
+            <tr>
+                <td> {{ vraag.title }} </td>
+                <td> {{ vraag.punten }} </td>
+                <td class="voegToe"> <input type="checkbox" name="vragen[]" value="{{ vraag.vraagID }}" /> </td>
+            </tr>
+             {% endfor %}
+        </table>
+    </form>
+     
+    
+   
+</body>
+</html>
+
+<style>
+    #vragen {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 40%;
+        margin-left: 30%;
+    }
+
+    #vragen td, #vragen th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        width: 15%;
+        text-align: center;
+    }
+
+    #vragen .voegToe {
+        width: 10%;
+    }
+
+    #vragen th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>

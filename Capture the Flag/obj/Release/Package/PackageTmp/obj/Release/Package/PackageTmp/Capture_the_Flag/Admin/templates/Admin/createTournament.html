@@ -1,0 +1,21 @@
+﻿{% load static %}
+{% include 'base.html' %}
+<html>
+{% include "Navbar/admin_navbar.html" %}
+<head>
+    <link href="{% static 'css/createToernooi.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="header-container">
+        <h1 id="header-text">Toernooi aanmaken</h1>
+    </div>
+    <div class="container">
+        <p>{{ message }}</p>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-green btn-submit-tourn" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

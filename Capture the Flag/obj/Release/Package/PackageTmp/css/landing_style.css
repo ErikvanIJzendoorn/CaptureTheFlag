@@ -1,0 +1,64 @@
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+li {
+    width: 50%;
+    background-color: #00000061;
+}
+
+.card {
+    width: 40%;
+    padding: 0;
+}
+
+.tab-content {
+}
+
+.tabClass {
+    border-radius: 25px;
+}
+
+.main_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-form {
+    padding: 50px;
+}
+
+.input-group-text {
+    width: 45px;
+    justify-content: center;
+}
+
+.logo {
+    width: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 20px;
+}
+
+.footer-text {
+    font-size: 0.8em;
+    color: #9E9E9E;
+}
+
+.input-group {
+    margin-top: 25px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary-wider {
+    width: 130px;
+}

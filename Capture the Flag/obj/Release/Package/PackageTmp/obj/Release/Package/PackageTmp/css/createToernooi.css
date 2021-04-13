@@ -1,0 +1,39 @@
+.btn-submit-tourn {
+    width: 30%;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border: 2px solid #9E9E9E;
+    border-radius: 10px;
+    width: 40%;
+    margin: auto;
+    padding: 25px;
+}
+
+.header-container {
+    padding: 10px;
+    margin: 10px;
+}
+
+#header-text {
+    text-align: center;
+}
+
+.form {
+    width: 80%;
+    position: relative;
+    margin: auto;
+}
+
+.form input {
+    max-width: 100%;
+}
+
+.form select {
+    max-width: 100%;
+}

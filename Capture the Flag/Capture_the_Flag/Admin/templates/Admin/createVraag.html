@@ -1,0 +1,122 @@
+﻿{% load static %}
+{% include 'base.html' %}
+{% include "Navbar/admin_navbar.html" %}
+<head>
+    <title>Vraag aanmaken</title>
+    <link href="{% static 'css/createVraag_style.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <h2>Nieuwe vraag aanmaken</h2>
+    <div class="form-container">
+        <form id="questionForm" method="post">
+            {% csrf_token %}   
+            <div class="card card-addition">   
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        {{ form.type.label_tag }}
+                        {{ form.type }}
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="{{ form.title.id_for_label }}">Titel: </label>
+                        {{ form.title }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.omschrijving.id_for_label }}">Voer hier de vraag in:</label>
+                    {{ form.omschrijving}}
+                </div>
+                <div class="form-group">
+                    {{ form.juist_antwoord.label_tag }}
+                    {{ form.juist_antwoord}}
+                </div>
+                <div id="multi_container" style="display: none;">
+                    <div class="form-group">
+                        <div class="col-md-8 multi_opt">
+                            <input class="form-control" type="text" name="opties[]" placeholder="Optie 1"/>
+                        </div>
+                        <div class="col-md-2 multi_radio">
+                            <input class="form-control" type="radio" name="correct" value="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 multi_opt">
+                            <input class="form-control" type="text" name="opties[]" placeholder="Optie 2"/>
+                        </div>
+                        <div class="col-md-2 multi_radio">
+                            <input class="form-control" type="radio" name="correct" value="1"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 multi_opt">
+                            <input class="form-control" type="text" name="opties[]" placeholder="Optie 3"/>
+                        </div>
+                        <div class="col-md-2 multi_radio">
+                            <input class="form-control" type="radio" name="correct" value="2"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 multi_opt">
+                            <input class="form-control" type="text" name="opties[]" placeholder="Optie 4"/>
+                        </div>
+                        <div class="col-md-2 multi_radio">
+                            <input class="form-control" type="radio" name="correct" value="3"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        {{ form.punten.label_tag }}
+                        {{ form.punten}}
+                    </div>
+                    <div class="form-group col-md-8 nakijken-container">
+                        <label class="nakijken-label">Moet deze vraag handmatig worden nagekeken? </label>
+                        <div class="radio-container">
+                            <div class="radio-items">
+                                <input type="radio" value="1" name="nakijken"/>
+                                <label>Ja</label>
+                            </div>
+                            <div class="radio-items">
+                                <input type="radio" value="0" name="nakijken" checked/>
+                                <label>Nee</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <input type="submit" value="Opslaan" class="btn btn-green btn-save-question">
+                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-modify">Annuleren</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% block js  %}
+        <script>
+            function changeType() {
+                var form = document.getElementById('questionForm');
+                var multi = document.getElementById('multi_container');
+                form.addEventListener('change', function () {
+                    if (form[1].selectedIndex === 1) {
+                        form[3].type = 'text';
+                        form[4].required = true;
+                        form[4].style.display = "flex";
+                        multi.style.display = "none";
+                    }
+                    else if (form[1].selectedIndex === 2) {
+                        form[3].type = 'text';
+                        form[4].required = true;
+                        form[4].style.display = "flex";
+                        multi.style.display = "none";
+                    }
+                    else if (form[1].selectedIndex === 3) {
+                        form[3].type = 'text';
+                        form[4].required = false;
+                        form[4].style.display = "none";
+                        multi.style.display = "block";
+                    }
+                });
+            }  
+        </script>
+    {% endblock %}
+</body>
+</html>

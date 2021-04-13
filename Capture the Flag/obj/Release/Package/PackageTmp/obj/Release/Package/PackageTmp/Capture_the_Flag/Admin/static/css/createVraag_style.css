@@ -1,0 +1,34 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    max-width:1600px; 
+}
+
+
+#questionForm {
+    width: 60%;
+}
+
+#multiForm {
+    width: 65%;
+    display: none;
+}
+
+.card-addition {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    padding: 12px;
+}
+
+.multi_opt {
+    padding: 0px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.multi_radio {
+    float: right;
+}
